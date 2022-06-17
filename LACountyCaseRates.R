@@ -8,10 +8,10 @@ library(gridExtra) # for arranging plots
 
 
 cases <- read.csv("LACountyNewDailyCases.csv")
-# Cleaning the bad input data!
+# Cleaning the bad input data! Why did he do that?
 #cases$mnum <- plyr::revalue(cases$Month, c("Jan"="01", "jan"="01", "Dec"=12, "dec"=12, "Feb"="02","Mar"="03","Apr"="04","may"="05", "May"="05"))
 
-cases$mnum <- dplyr::recode(cases$Month, "Jan"="01", "jan"="01", "Dec"="12", "dec"="12", "Feb"="02","Mar"="03","Apr"="04","may"="05", "May"="05","Jun"='06')
+cases$mnum <- dplyr::recode(cases$Month, "Jan"="01", "jan"="01", "Dec"="12", "dec"="12", "Feb"="02","Mar"="03","Apr"="04","may"="05", "May"="05","Jun"='06',                        "Jul"="07")
 
 # makin a uniform date from "why did he do that?" ymd columns
 cases$dstring <- paste0(cases$Year,cases$mnum,cases$Day)
@@ -33,7 +33,7 @@ qplot(x=date, y=per100K,
 
 qplot(x=date, y=Cases,
       data=cases, na.rm=TRUE,
-      main="New daily COVID19 cases in LA County Dec18-Apr",
+      main="New daily COVID19 cases in LA County Dec18-Jun",
       xlab="Date", ylab="new cases")
 
 cases |> ggplot(aes(x=date,y=Cases)) + geom_point()
@@ -77,6 +77,8 @@ aftercheck <- interval(checkpoint,today())
 cases$date %within% aftercheck
 
 quit('ask')
+
+## What if the rate is this many times higher than reported?
 mulfactor <- 6
 
 ## Wrong!
