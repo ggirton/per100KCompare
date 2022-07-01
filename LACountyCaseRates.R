@@ -78,7 +78,9 @@ cases$date %within% aftercheck
 
 quit('ask')
 
-## What if the rate is this many times higher than reported?
+## Q. What if the rate is this many times higher than reported?
+## A. Things look a lot worse, but we are not plotting death rate so ... 
+##      don't do this, it is not real data
 mulfactor <- 6
 
 ## Wrong!
